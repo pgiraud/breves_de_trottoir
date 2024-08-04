@@ -1,19 +1,31 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import { computed, ref } from "vue";
+import draggable from "vuedraggable";
+const breves = ref([
+  {
+    name: "L'homme de la rue",
+    actors: ["Pierre", "Xavier"],
+  },
+  {
+    name: "Comme sur des roulettes",
+    actors: ["Pierre", "Jean-Pierre"],
+  },
+  {
+    name: "Le juste prix",
+    actors: ["Pierre", "Justine"],
+  }
+])
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
   <main>
-    <TheWelcome />
+    <draggable :list="breves" :disabled="false" class="list-group" item-key="name">
+      <template #item="{ element }">
+        <div class="list-group-item">
+          {{ element.name }}
+        </div>
+      </template>
+    </draggable>
   </main>
 </template>
 
@@ -25,23 +37,5 @@ header {
 .logo {
   display: block;
   margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
 }
 </style>
