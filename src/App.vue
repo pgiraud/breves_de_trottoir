@@ -47,7 +47,22 @@ const breves = ref([
     name: "Du balai",
     actors: ["Jean-Pierre", "Libo"],
   },
+  {
+    name: "Le pari de pascal",
+    actors: [""],
+  },
+  {
+    name: "Un bon coup de balai",
+    actors: ["Marie-Christine", "Xavier"],
+  },
+  {
+    name: "Une ombre de la rue",
+    actors: [],
+  },
 ])
+
+let index = 1;
+breves.value.forEach((b) => b.id = index++);
 
 const actors = computed(() => _.union(...breves.value.map((breve) => breve.actors)));
 
@@ -158,7 +173,7 @@ const symbols = [
     <draggable :list="breves" :disabled="false" class="list-group" item-key="name">
       <template #item="{ element }">
         <div class="list-group-item">
-          {{ element.name }}
+          {{ element.id }} - {{ element.name }}
         </div>
       </template>
     </draggable>
