@@ -6,23 +6,23 @@ import _ from "lodash";
 const initialBreves = [
   {
     name: "Au bout de la rue",
-    actors: ["Christine", "Danièle", "Libo"],
+    actors: ["Chr", "Dan", "Libo"],
   },
   {
     name: "Plan de carrière",
-    actors: ["Véronique", "Justine"],
+    actors: ["Véro", "Just"],
   },
   {
     name: "La rue est à tout le monde",
-    actors: ["Brigitte", "Libo"],
+    actors: ["Boule", "Libo"],
   },
   {
     name: "Comme sur des roulettes",
-    actors: ["Pierre", "Jean-Pierre"],
+    actors: ["Pierre", "JP"],
   },
   {
     name: "Le juste prix",
-    actors: ["Pierre", "Justine"],
+    actors: ["Pierre", "Just"],
   },
   {
     name: "L'homme de la rue",
@@ -34,19 +34,19 @@ const initialBreves = [
   },
   {
     name: "Deuxième chance",
-    actors: ["Jean-Pierre", "Jeff"],
+    actors: ["JP", "Jeff"],
   },
   {
     name: "À la rue",
-    actors: ["Véronique", "Pierre"],
+    actors: ["Véro", "Pierre"],
   },
   {
     name: "La manif pour personne",
-    actors: ["Danièle", "Marie-Christine", "Christine"],
+    actors: ["Dan", "M-Chr", "Chr"],
   },
   {
     name: "Du balai",
-    actors: ["Jean-Pierre", "Libo"],
+    actors: ["JP", "Libo"],
   },
   {
     name: "Le pari de pascal",
@@ -54,7 +54,7 @@ const initialBreves = [
   },
   {
     name: "Un bon coup de balai",
-    actors: ["Marie-Christine", "Xavier"],
+    actors: ["M-Chr", "Xavier"],
   },
   {
     name: "Une ombre de la rue",
@@ -188,7 +188,7 @@ const actors = ref(
 </script>
 
 <template>
-  <main>
+  <main class="col-11">
     <draggable :list="breves" :disabled="false" class="list-group" item-key="name">
       <template #item="{ element }">
         <div
@@ -201,7 +201,6 @@ const actors = ref(
               :symbol="actors[actor].symbol"
               :color="actors[actor].color"
               v-for="actor in element.actors"
-              class="mx-1"
             />
           </div>
         </div>
