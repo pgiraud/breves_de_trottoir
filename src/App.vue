@@ -1,6 +1,7 @@
 <script setup>
 import { computed, ref } from "vue";
 import draggable from "vuedraggable";
+import ActorItem from "@/components/ActorItem.vue";
 import _ from "lodash";
 const breves = ref([
   {
@@ -59,29 +60,36 @@ const breves = ref([
     name: "Une ombre de la rue",
     actors: [],
   },
-])
+]);
 
 let index = 1;
-breves.value.forEach((b) => b.id = index++);
+breves.value.forEach((b) => (b.id = index++));
 
-const actors = computed(() => _.union(...breves.value.map((breve) => breve.actors)));
+const actorSymbols = computed(() => {
+  return Object.assign(
+    {},
+    ..._.union(...breves.value.map((breve) => breve.actors)).map((actor, i) => {
+      return { [actor]: symbols[i] };
+    }),
+  );
+});
 
 const symbols = [
-`
+  `
 <!-- Class 1: Empty Circle -->
 <svg viewBox="0 0 24 24">
   <circle cx="12" cy="12" r="10" stroke="black" stroke-width="2" fill="none"/>
 </svg>
 
 `,
-`
+  `
 <!-- Class 2: Filled Circle -->
 <svg viewBox="0 0 24 24">
   <circle cx="12" cy="12" r="10" fill="black"/>
 </svg>
 
 `,
-`
+  `
 <!-- Class 3: Hatched Circle -->
 <svg width="100" height="100" viewBox="0 0 24 24">
   <circle cx="12" cy="12" r="10" stroke="black" stroke-width="2" fill="none"/>
@@ -94,20 +102,20 @@ const symbols = [
 </svg>
 
 `,
-`
+  `
 <!-- Class 4: Empty Triangle -->
 <svg width="100" height="100" viewBox="0 0 24 24">
   <polygon points="12,2 2,22 22,22" stroke="black" stroke-width="2" fill="none"/>
 </svg>
 
 `,
-`
+  `
 <!-- Class 5: Filled Triangle -->
 <svg width="100" height="100" viewBox="0 0 24 24">
   <polygon points="12,2 2,22 22,22" fill="black"/>
 </svg>
 `,
-`
+  `
 <!-- Class 6: Hatched Triangle -->
 <svg viewBox="0 0 24 24">
   <polygon points="12,2 2,22 22,22" stroke="black" stroke-width="2" fill="none"/>
@@ -115,40 +123,40 @@ const symbols = [
 </svg>
 
 `,
-`
+  `
 <!-- Class 7: Empty Square -->
 <svg viewBox="0 0 24 24">
   <rect x="4" y="4" width="16" height="16" stroke="black" stroke-width="2" fill="none"/>
 </svg>
 
 `,
-`
+  `
 <!-- Class 8: Filled Square -->
 <svg viewBox="0 0 24 24">
   <rect x="4" y="4" width="16" height="16" fill="black"/>
 </svg>
 
 `,
-`
+  `
 <!-- Class 9: Hatched Square -->
 <svg viewBox="0 0 24 24">
   <rect x="4" y="4" width="16" height="16" stroke="black" stroke-width="2" fill="none"/>
   <rect x="5" y="5" width="14" height="14" fill="url(#hatched)"/>
 </svg>
 `,
-`
+  `
 <!-- Class 10: Empty Diamond -->
 <svg width="100" height="100" viewBox="0 0 24 24">
   <polygon points="12,2 22,12 12,22 2,12" stroke="black" stroke-width="2" fill="none"/>
 </svg>
 `,
-`
+  `
 <!-- Class 11: Filled Diamond -->
 <svg width="100" height="100" viewBox="0 0 24 24">
   <polygon points="12,2 22,12 12,22 2,12" fill="black"/>
 </svg>
 `,
-`
+  `
 <!-- Class 12: Hatched Diamond -->
 <svg width="100" height="100" viewBox="0 0 24 24">
   <defs>
@@ -158,22 +166,26 @@ const symbols = [
   </defs>
   <polygon points="12,2 22,12 12,22 2,12" stroke="black" stroke-width="2" fill="url(#hatched)"/>
 </svg>
-`
+`,
 ];
-
 </script>
 
 <template>
   <main>
-    <span v-for="actor, index in actors">
-      {{ actor }}
-      <span v-html="symbols[index]" class="symbol">
-      </span>
-    </span>
     <draggable :list="breves" :disabled="false" class="list-group" item-key="name">
       <template #item="{ element }">
-        <div class="list-group-item">
+        <div
+          class="list-group-item d-flex flex-row align-items-center justify-content-between"
+        >
           {{ element.id }} - {{ element.name }}
+          <div class="d-flex flex-row ml-auto">
+            <ActorItem
+              :actor="actor"
+              :symbol="actorSymbols[actor]"
+              v-for="actor in element.actors"
+              class="mx-1"
+            />
+          </div>
         </div>
       </template>
     </draggable>
