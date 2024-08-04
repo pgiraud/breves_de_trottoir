@@ -1,2 +1,7 @@
 @import "bootstrap";
 @import './base.css';
+
+.symbol svg {
+  height: 20px;
+  width: 20px;
+}
