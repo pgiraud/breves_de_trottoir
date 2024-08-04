@@ -3,7 +3,7 @@ import { computed, ref } from "vue";
 import draggable from "vuedraggable";
 import ActorItem from "@/components/ActorItem.vue";
 import _ from "lodash";
-const breves = ref([
+const initialBreves = [
   {
     name: "Au bout de la rue",
     actors: ["Christine", "Danièle", "Libo"],
@@ -60,19 +60,12 @@ const breves = ref([
     name: "Une ombre de la rue",
     actors: [],
   },
-]);
+];
+
+const breves = ref(initialBreves);
 
 let index = 1;
 breves.value.forEach((b) => (b.id = index++));
-
-const actorSymbols = computed(() => {
-  return Object.assign(
-    {},
-    ..._.union(...breves.value.map((breve) => breve.actors)).map((actor, i) => {
-      return { [actor]: symbols[i] };
-    }),
-  );
-});
 
 const symbols = [
   `
@@ -168,6 +161,15 @@ const symbols = [
 </svg>
 `,
 ];
+
+const actorSymbols = ref(
+  Object.assign(
+    {},
+    ..._.union(...initialBreves.map((breve) => breve.actors)).map((actor, i) => {
+      return { [actor]: symbols[i] };
+    }),
+  ),
+);
 </script>
 
 <template>
