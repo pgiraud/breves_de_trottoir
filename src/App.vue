@@ -162,11 +162,26 @@ const symbols = [
 `,
 ];
 
-const actorSymbols = ref(
+const colors = [
+  "#a6cee3",
+  "#1f78b4",
+  "#b2df8a",
+  "#33a02c",
+  "#fb9a99",
+  "#e31a1c",
+  "#fdbf6f",
+  "#ff7f00",
+  "#cab2d6",
+  "#6a3d9a",
+  "#ffff99",
+  "#b15928",
+];
+
+const actors = ref(
   Object.assign(
     {},
     ..._.union(...initialBreves.map((breve) => breve.actors)).map((actor, i) => {
-      return { [actor]: symbols[i] };
+      return { [actor]: { symbol: symbols[i], color: colors[i] } };
     }),
   ),
 );
@@ -183,7 +198,8 @@ const actorSymbols = ref(
           <div class="d-flex flex-row ml-auto">
             <ActorItem
               :actor="actor"
-              :symbol="actorSymbols[actor]"
+              :symbol="actors[actor].symbol"
+              :color="actors[actor].color"
               v-for="actor in element.actors"
               class="mx-1"
             />
