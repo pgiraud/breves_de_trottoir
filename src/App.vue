@@ -194,7 +194,7 @@ const actors = ref(
         <div
           class="list-group-item d-flex flex-row align-items-center justify-content-between"
         >
-          {{ element.id }} - {{ element.name }}
+          <span class="text-truncate"> {{ element.id }} - {{ element.name }} </span>
           <div class="d-flex flex-row ml-auto">
             <ActorItem
               :actor="actor"
