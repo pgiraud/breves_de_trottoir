@@ -6,11 +6,11 @@ import _ from "lodash";
 const initialBreves = [
   {
     name: "Au bout de la rue",
-    actors: ["Chr", "Dan", "Libo"],
+    actors: ["Chr.", "Dan.", "Libo"],
   },
   {
     name: "Plan de carrière",
-    actors: ["Véro", "Just"],
+    actors: ["Véro", "Just."],
   },
   {
     name: "La rue est à tout le monde",
@@ -22,7 +22,7 @@ const initialBreves = [
   },
   {
     name: "Le juste prix",
-    actors: ["Pierre", "Just"],
+    actors: ["Pierre", "Just."],
   },
   {
     name: "L'homme de la rue",
@@ -42,7 +42,7 @@ const initialBreves = [
   },
   {
     name: "La manif pour personne",
-    actors: ["Dan", "M-Chr", "Chr"],
+    actors: ["Dan.", "M-Chr.", "Chr."],
   },
   {
     name: "Du balai",
@@ -54,7 +54,7 @@ const initialBreves = [
   },
   {
     name: "Un bon coup de balai",
-    actors: ["M-Chr", "Xavier"],
+    actors: ["M-Chr.", "Xavier"],
   },
   {
     name: "Une ombre de la rue",
