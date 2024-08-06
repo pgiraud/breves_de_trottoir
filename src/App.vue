@@ -30,7 +30,7 @@ const initialBreves = [
   },
   {
     name: "Le bon numéro",
-    actors: ["Sophie", "Xavier"],
+    actors: ["Sophie", "Xavier", "JP"],
   },
   {
     name: "Deuxième chance",
