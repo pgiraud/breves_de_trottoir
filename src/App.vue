@@ -62,10 +62,11 @@ const initialBreves = [
   },
 ];
 
-const breves = ref(initialBreves);
+const played = ref(initialBreves);
+const notPlayed = ref([]);
 
 let index = 1;
-breves.value.forEach((b) => (b.id = index++));
+played.value.forEach((b) => (b.id = index++));
 
 const symbols = [
   `
@@ -189,7 +190,13 @@ const actors = ref(
 
 <template>
   <main class="col-11">
-    <draggable :list="breves" :disabled="false" class="list-group" item-key="name">
+    <draggable
+      :list="played"
+      :disabled="false"
+      class="list-group"
+      item-key="name"
+      group="breves"
+    >
       <template #item="{ element }">
         <div
           class="list-group-item d-flex flex-row align-items-center justify-content-between"
@@ -205,6 +212,31 @@ const actors = ref(
           </div>
         </div>
       </template>
+      <template #header> <b class="text-center">Scènes jouées</b> </template>
+    </draggable>
+    <draggable
+      :list="notPlayed"
+      :disabled="false"
+      class="list-group mt-1"
+      item-key="name"
+      group="breves"
+    >
+      <template #item="{ element }">
+        <div
+          class="list-group-item d-flex flex-row align-items-center justify-content-between text-decoration-line-through opacity-50"
+        >
+          <span class="text-truncate"> {{ element.id }} - {{ element.name }} </span>
+          <div class="d-flex flex-row ml-auto">
+            <ActorItem
+              :actor="actor"
+              :symbol="actors[actor].symbol"
+              :color="actors[actor].color"
+              v-for="actor in element.actors"
+            />
+          </div>
+        </div>
+      </template>
+      <template #header> <b class="text-center">Scènes non jouées</b> </template>
     </draggable>
   </main>
 </template>
