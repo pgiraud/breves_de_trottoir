@@ -50,7 +50,7 @@ const initialBreves = [
   },
   {
     name: "Le pari de pascal",
-    actors: [""],
+    actors: ["Brigitte", "Just.", "Sophie", "Dan."],
   },
   {
     name: "Un bon coup de balai",
@@ -58,6 +58,22 @@ const initialBreves = [
   },
   {
     name: "Une ombre de la rue",
+    actors: ["Xavier", "JP", "Sophie"],
+  },
+  {
+    name: "-- Intermède musical --",
+    actors: [],
+  },
+  {
+    name: "-- Intermède musical --",
+    actors: [],
+  },
+  {
+    name: "-- Intermède musical --",
+    actors: [],
+  },
+  {
+    name: "-- Intermède musical --",
     actors: [],
   },
 ];
@@ -201,7 +217,7 @@ const actors = ref(
         <div
           class="list-group-item d-flex flex-row align-items-center justify-content-between"
         >
-          <span class="text-truncate"> {{ element.id }} - {{ element.name }} </span>
+          <span class="text-truncate"> {{ element.name }} </span>
           <div class="d-flex flex-row ml-auto">
             <ActorItem
               :actor="actor"
@@ -225,7 +241,7 @@ const actors = ref(
         <div
           class="list-group-item d-flex flex-row align-items-center justify-content-between text-decoration-line-through opacity-50"
         >
-          <span class="text-truncate"> {{ element.id }} - {{ element.name }} </span>
+          <span class="text-truncate"> {{ element.name }} </span>
           <div class="d-flex flex-row ml-auto">
             <ActorItem
               :actor="actor"
