@@ -50,7 +50,7 @@ const initialBreves = [
   },
   {
     name: "Le pari de pascal",
-    actors: ["Brigitte", "Just.", "Sophie", "Dan."],
+    actors: ["Boule", "Just.", "Sophie", "Dan."],
   },
   {
     name: "Un bon coup de balai",
